@@ -1,25 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react'
+import Header from './components/header/Header'
+import Form from './components/form/Form'
+import People from './components/people/People'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      title: 'React Props!!',
+      people: [],
+    }
+  }
+
+  changeTitle = (string) =>{
+    this.setState({
+      title: string,
+    })
+  }
+
+  updatePeople = (data)=>{
+    this.setState({
+      people: data,
+    })
+  }
+
+  render(){
+    return (
+      <div className="App">
+
+          <Header changeTitle={this.changeTitle} title={this.state.title}/>
+          <Form updatePeople={this.updatePeople}/>
+          <People data={this.state.people} />
+      </div>
+    );
+
+  }
+  
 }
 
 export default App;
